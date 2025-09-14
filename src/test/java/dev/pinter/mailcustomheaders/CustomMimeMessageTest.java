@@ -13,7 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Properties;
@@ -110,7 +110,7 @@ public class CustomMimeMessageTest {
 
 
     private CustomMimeMessage createMessage() throws MessagingException, IOException {
-        String msg = String.join("\n", Files.readAllLines(Path.of("src/test/resources/mail.msg")));
+        String msg = String.join("\n", Files.readAllLines(Paths.get("src/test/resources/mail.msg")));
         Session session = Session.getInstance(new Properties());
         return new CustomMimeMessage(session, new ByteArrayInputStream(msg.getBytes(StandardCharsets.UTF_8)));
     }
@@ -130,9 +130,9 @@ public class CustomMimeMessageTest {
 
     private String headersToString(MimeMessage mimeMessage) throws MessagingException {
         StringBuilder headerLines = new StringBuilder();
-        Iterator<String> headerLinesIterator = mimeMessage.getAllHeaderLines().asIterator();
-        while (headerLinesIterator.hasNext()) {
-            headerLines.append(headerLinesIterator.next()).append("\n");
+        Enumeration<String> headerLinesIterator = mimeMessage.getAllHeaderLines();
+        while (headerLinesIterator.hasMoreElements()) {
+            headerLines.append(headerLinesIterator.nextElement()).append("\n");
         }
         return headerLines.toString();
     }

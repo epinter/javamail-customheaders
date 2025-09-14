@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomInternetHeaders extends InternetHeaders {
-    private final List<String> CUSTOM_HEADER_ORDER = new ArrayList<>() {{
+    private final List<String> CUSTOM_HEADER_ORDER = new ArrayList<String>() {{
         add("return-path");
         add("received");
         add("authentication-results");
