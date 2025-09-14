@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+group = 'dev.pinter.mailcustomheaders'
+version = '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'jakarta.mail:jakarta.mail-api:2.1.4'
+    implementation 'org.eclipse.angus:smtp:2.0.4'
+}
+
+test {
+    useJUnitPlatform()
+}
